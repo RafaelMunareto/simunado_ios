@@ -22,7 +22,8 @@ struct QuestaoRow: View {
                             .font(.subheadline)
                             .fixedSize(horizontal: false, vertical: true)
                             .multilineTextAlignment(.leading)
-                        Spacer()
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            Spacer()
                     }
                     Spacer() 
                 }

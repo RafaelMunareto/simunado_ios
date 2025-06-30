@@ -20,7 +20,7 @@ struct GabaritoView: View {
                                 let resposta = respostasManager.respostas[questao.id] ?? ""
                                 let correta = questao.gabarito.uppercased()
                                 HStack {
-                                    Text("\(questao.id). \(questao.enunciado.prefix(50))...")
+                                    Text("\(questao.id). \(String((questao.enunciado ?? "").prefix(50)))...")
                                         .font(.subheadline)
                                     Spacer()
                                     if resposta.isEmpty {

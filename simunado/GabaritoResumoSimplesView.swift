@@ -12,13 +12,19 @@ struct GabaritoResumoSimplesView: View {
     let resumo: ResultadoResumo
     let liquidoBasico: Int?
     let liquidoEspecifico: Int?
+    let categoria: String?
 
     var body: some View {
         VStack(spacing: 8) {
+            Text(categoria ?? "teste")
+                .font(.title2)
+                .foregroundColor(/*@START_MENU_TOKEN@*/.blue/*@END_MENU_TOKEN@*/)
+                .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
+                
             HStack {
                 Text("✅ Acertos: \(resumo.acertos)")
                 Text("❌ Erros: \(resumo.erros)")
-                Text("⬜️ Não Respondidas: \(resumo.vazios)")
+                Text("⬜️ Brancos: \(resumo.vazios)")
             }
             .font(.subheadline)
 

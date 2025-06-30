@@ -15,103 +15,132 @@ struct ContentView: View {
     @StateObject private var respostasManager = RespostasManager()
     
     var body: some View {
-        VStack(spacing: 0) {
-            VStack(spacing: 8) {
-                Text("SIMUNADO")
-                    .font(.largeTitle)
-                    .fontWeight(.bold)
-                    .foregroundColor(Color.blue)
-                    .padding(.top, 12)
-                
-//                Picker("Prova", selection: $provaSelecionada) {
-//                    ForEach(provasDisponiveis, id: \.self) { p in
-//                        Text(p.capitalized)
-//                    }
-//                }
-//                .pickerStyle(MenuPickerStyle())
-                
-                Picker("Parte", selection: $parteAtual) {
-                    Text("BÁSICO").tag("basicos")
-                    Text("ESPECÍFICO").tag("especificos")
-                }
-                .pickerStyle(SegmentedPickerStyle())
-                .padding(8)
-            }
-            .background(Color(.systemBackground))
-            .zIndex(1)
-            
-            Divider()
-            
-            ScrollView {
-                VStack {
-                    if let prova = prova?[parteAtual] {
-                        QuestoesView(
-                            parte: prova,
-                            respostasManager: respostasManager,
-                            corrigido: parteAtual == "basicos" ? corrigidoBasico : corrigidoEspecifico
-                        )
-                    }
+        ScrollViewReader { scrollProxy in
+            VStack(spacing: 0) {
+                VStack(spacing: 8) {
+                    Text("SIMUNADO")
+                        .font(.largeTitle)
+                        .fontWeight(.bold)
+                        .foregroundColor(Color.blue)
+                        .padding(.top, 12)
                     
-                    HStack {
-                        Button("Gerar Gabarito") {
+                    // Se quiser ativar seleção da prova, descomente:
+                    /*
+                    Picker("Prova", selection: $provaSelecionada) {
+                        ForEach(provasDisponiveis, id: \.self) { p in
+                            Text(p.capitalized)
+                        }
+                    }
+                    .pickerStyle(MenuPickerStyle())
+                    */
+                    
+                    Picker("Parte", selection: $parteAtual) {
+                        Text("BÁSICO").tag("basicos")
+                        Text("ESPECÍFICO").tag("especificos")
+                    }
+                    .pickerStyle(SegmentedPickerStyle())
+                    .padding(8)
+                }
+                .background(Color(.systemBackground))
+                .zIndex(1)
+                
+                Divider()
+                
+                ZStack(alignment: .bottomLeading) {
+                    ScrollView {
+                        VStack {
+                            Color.clear
+                                .frame(height: 0)
+                                .id("topo")
+                            
+                            if let prova = prova?[parteAtual] {
+                                QuestoesView(
+                                    parte: prova,
+                                    respostasManager: respostasManager,
+                                    corrigido: parteAtual == "basicos" ? corrigidoBasico : corrigidoEspecifico
+                                )
+                            }
+                            
+                            HStack {
+                                Button("Gerar Gabarito") {
+                                    if parteAtual == "basicos" {
+                                        corrigir(parte: "basicos")
+                                    } else {
+                                        corrigir(parte: "basicos")
+                                        corrigir(parte: "especificos")
+                                    }
+                                }
+                                .buttonStyle(.borderedProminent)
+                                
+                                Button("Limpar Respostas") {
+                                    respostasManager.limpar()
+                                    corrigidoBasico = false
+                                    corrigidoEspecifico = false
+                                    resultadoResumoBasico = nil
+                                    resultadoResumoEspecifico = nil
+                                    liquidoBasico = nil
+                                    liquidoEspecifico = nil
+                                }
+                                .buttonStyle(.bordered)
+                                .background(Color(.systemGray3))
+                                .foregroundColor(.primary)
+                            }
+                            .padding()
+                            
                             if parteAtual == "basicos" {
-                                corrigir(parte: "basicos")
+                                if let resumo = resultadoResumoBasico {
+                                    GabaritoResumoSimplesView(
+                                        resumo: resumo,
+                                        liquidoBasico: liquidoBasico,
+                                        liquidoEspecifico: liquidoEspecifico,
+                                        categoria: "Básico"
+                                    )
+                                    .padding()
+                                }
                             } else {
-                                corrigir(parte: "basicos")
-                                corrigir(parte: "especificos")
+                                VStack(spacing: 20) {
+                                    if let resumoBasico = resultadoResumoBasico {
+                                        GabaritoResumoSimplesView(
+                                            resumo: resumoBasico,
+                                            liquidoBasico: liquidoBasico,
+                                            liquidoEspecifico: liquidoEspecifico,
+                                            categoria: "Básico"
+                                        )
+                                    }
+                                    if let resumoEspecifico = resultadoResumoEspecifico {
+                                        GabaritoResumoSimplesView(
+                                            resumo: resumoEspecifico,
+                                            liquidoBasico: liquidoBasico,
+                                            liquidoEspecifico: liquidoEspecifico,
+                                            categoria: "Especifico"
+                                        )
+                                    }
+                                }
+                                .padding()
                             }
                         }
-                        .buttonStyle(.borderedProminent)
-                        
-                        Button("Limpar Respostas") {
-                            respostasManager.limpar()
-                            corrigidoBasico = false
-                            corrigidoEspecifico = false
-                            resultadoResumoBasico = nil
-                            resultadoResumoEspecifico = nil
-                            liquidoBasico = nil
-                            liquidoEspecifico = nil
+                    }
+                    
+                    Button(action: {
+                        withAnimation {
+                            scrollProxy.scrollTo("topo", anchor: .top)
                         }
-                        .buttonStyle(.bordered)
-                        .background( Color(.systemGray3))
-                        .foregroundColor(.primary)
+                    }) {
+                        Image(systemName: "arrow.up")
+                            .font(.system(size: 20))
+                            .padding()
+                            .background(Color.blue)
+                            .foregroundColor(.white)
+                            .clipShape(Circle())
+                            .shadow(radius: 4)
                     }
                     .padding()
-                    
-                    if parteAtual == "basicos" {
-                        if let resumo = resultadoResumoBasico {
-                            GabaritoResumoSimplesView(
-                                resumo: resumo,
-                                liquidoBasico: liquidoBasico,
-                                liquidoEspecifico: liquidoEspecifico
-                            )
-                            .padding()
-                        }
-                    } else {
-                        VStack(spacing: 20) {
-                            if let resumoBasico = resultadoResumoBasico {
-                                GabaritoResumoSimplesView(
-                                    resumo: resumoBasico,
-                                    liquidoBasico: liquidoBasico,
-                                    liquidoEspecifico: liquidoEspecifico
-                                )
-                            }
-                            if let resumoEspecifico = resultadoResumoEspecifico {
-                                GabaritoResumoSimplesView(
-                                    resumo: resumoEspecifico,
-                                    liquidoBasico: liquidoBasico,
-                                    liquidoEspecifico: liquidoEspecifico
-                                )
-                            }
-                        }
-                        .padding()
-                    }
                 }
             }
-        }
-        .onAppear {
-            respostasManager.carregar()
-            carregar()
+            .onAppear {
+                respostasManager.carregar()
+                carregar()
+            }
         }
     }
     
@@ -150,7 +179,8 @@ struct ContentView: View {
             acertos: acertos,
             erros: erros,
             vazios: vazios,
-            total: total, temas: []
+            total: total,
+            temas: []
         )
         
         if parte == "basicos" {
@@ -165,8 +195,7 @@ struct ContentView: View {
     }
 }
 
-
-
+// Modelos auxiliares
 struct ResultadoResumo {
     let acertos: Int
     let erros: Int
@@ -183,7 +212,6 @@ struct TemaResumo: Identifiable {
     let vazios: Int
     var liquido: Int { acertos - erros }
 }
-
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {

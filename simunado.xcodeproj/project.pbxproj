@@ -8,12 +8,22 @@
 
 /* Begin PBXBuildFile section */
 		17D452122E129EB7006D1FA1 /* simunadoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17D452112E129EB7006D1FA1 /* simunadoApp.swift */; };
-		17D452142E129EB7006D1FA1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17D452132E129EB7006D1FA1 /* ContentView.swift */; };
 		17D452162E129EB9006D1FA1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 17D452152E129EB9006D1FA1 /* Assets.xcassets */; };
 		17D452192E129EB9006D1FA1 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 17D452182E129EB9006D1FA1 /* Preview Assets.xcassets */; };
 		17D452232E129EB9006D1FA1 /* simunadoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17D452222E129EB9006D1FA1 /* simunadoTests.swift */; };
 		17D4522D2E129EB9006D1FA1 /* simunadoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17D4522C2E129EB9006D1FA1 /* simunadoUITests.swift */; };
 		17D4522F2E129EB9006D1FA1 /* simunadoUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17D4522E2E129EB9006D1FA1 /* simunadoUITestsLaunchTests.swift */; };
+		17D452472E129EF3006D1FA1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17D4523B2E129EE4006D1FA1 /* ContentView.swift */; };
+		17D452482E129EF3006D1FA1 /* Prova.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17D4523C2E129EE7006D1FA1 /* Prova.swift */; };
+		17D452492E129EF3006D1FA1 /* GabaritoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17D4523D2E129EEA006D1FA1 /* GabaritoView.swift */; };
+		17D4524A2E129EF3006D1FA1 /* GabaritoResumoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17D4523E2E129EED006D1FA1 /* GabaritoResumoView.swift */; };
+		17D4524B2E129EF3006D1FA1 /* JustifiedText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17D4523F2E129EEF006D1FA1 /* JustifiedText.swift */; };
+		17D4524C2E129EF3006D1FA1 /* GabaritoResumoSimplesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17D452412E129EF1006D1FA1 /* GabaritoResumoSimplesView.swift */; };
+		17D4524D2E129EF3006D1FA1 /* QuestaoRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17D452422E129EF1006D1FA1 /* QuestaoRow.swift */; };
+		17D4524E2E129EF3006D1FA1 /* QuestoesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17D452432E129EF1006D1FA1 /* QuestoesView.swift */; };
+		17D452502E129EF3006D1FA1 /* RespostasManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17D452452E129EF2006D1FA1 /* RespostasManager.swift */; };
+		17D452512E129EF3006D1FA1 /* JSONLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17D452462E129EF3006D1FA1 /* JSONLoader.swift */; };
+		17D452552E12A2A7006D1FA1 /* prova_1.json in Resources */ = {isa = PBXBuildFile; fileRef = 17D452542E12A2A7006D1FA1 /* prova_1.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,7 +46,6 @@
 /* Begin PBXFileReference section */
 		17D4520E2E129EB7006D1FA1 /* simunado.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = simunado.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		17D452112E129EB7006D1FA1 /* simunadoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = simunadoApp.swift; sourceTree = "<group>"; };
-		17D452132E129EB7006D1FA1 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		17D452152E129EB9006D1FA1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		17D452182E129EB9006D1FA1 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		17D4521E2E129EB9006D1FA1 /* simunadoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = simunadoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -44,6 +53,18 @@
 		17D452282E129EB9006D1FA1 /* simunadoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = simunadoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		17D4522C2E129EB9006D1FA1 /* simunadoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = simunadoUITests.swift; sourceTree = "<group>"; };
 		17D4522E2E129EB9006D1FA1 /* simunadoUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = simunadoUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		17D4523B2E129EE4006D1FA1 /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		17D4523C2E129EE7006D1FA1 /* Prova.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Prova.swift; sourceTree = "<group>"; };
+		17D4523D2E129EEA006D1FA1 /* GabaritoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GabaritoView.swift; sourceTree = "<group>"; };
+		17D4523E2E129EED006D1FA1 /* GabaritoResumoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GabaritoResumoView.swift; sourceTree = "<group>"; };
+		17D4523F2E129EEF006D1FA1 /* JustifiedText.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JustifiedText.swift; sourceTree = "<group>"; };
+		17D452402E129EF0006D1FA1 /* p_estudo-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "p_estudo-Bridging-Header.h"; sourceTree = "<group>"; };
+		17D452412E129EF1006D1FA1 /* GabaritoResumoSimplesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GabaritoResumoSimplesView.swift; sourceTree = "<group>"; };
+		17D452422E129EF1006D1FA1 /* QuestaoRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestaoRow.swift; sourceTree = "<group>"; };
+		17D452432E129EF1006D1FA1 /* QuestoesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestoesView.swift; sourceTree = "<group>"; };
+		17D452452E129EF2006D1FA1 /* RespostasManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RespostasManager.swift; sourceTree = "<group>"; };
+		17D452462E129EF3006D1FA1 /* JSONLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONLoader.swift; sourceTree = "<group>"; };
+		17D452542E12A2A7006D1FA1 /* prova_1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = prova_1.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,6 +95,7 @@
 		17D452052E129EB7006D1FA1 = {
 			isa = PBXGroup;
 			children = (
+				17D452542E12A2A7006D1FA1 /* prova_1.json */,
 				17D452102E129EB7006D1FA1 /* simunado */,
 				17D452212E129EB9006D1FA1 /* simunadoTests */,
 				17D4522B2E129EB9006D1FA1 /* simunadoUITests */,
@@ -94,8 +116,18 @@
 		17D452102E129EB7006D1FA1 /* simunado */ = {
 			isa = PBXGroup;
 			children = (
+				17D4523B2E129EE4006D1FA1 /* ContentView.swift */,
+				17D452412E129EF1006D1FA1 /* GabaritoResumoSimplesView.swift */,
+				17D4523E2E129EED006D1FA1 /* GabaritoResumoView.swift */,
+				17D4523D2E129EEA006D1FA1 /* GabaritoView.swift */,
+				17D452462E129EF3006D1FA1 /* JSONLoader.swift */,
+				17D4523F2E129EEF006D1FA1 /* JustifiedText.swift */,
+				17D452402E129EF0006D1FA1 /* p_estudo-Bridging-Header.h */,
+				17D4523C2E129EE7006D1FA1 /* Prova.swift */,
+				17D452422E129EF1006D1FA1 /* QuestaoRow.swift */,
+				17D452432E129EF1006D1FA1 /* QuestoesView.swift */,
+				17D452452E129EF2006D1FA1 /* RespostasManager.swift */,
 				17D452112E129EB7006D1FA1 /* simunadoApp.swift */,
-				17D452132E129EB7006D1FA1 /* ContentView.swift */,
 				17D452152E129EB9006D1FA1 /* Assets.xcassets */,
 				17D452172E129EB9006D1FA1 /* Preview Content */,
 			);
@@ -232,6 +264,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				17D452192E129EB9006D1FA1 /* Preview Assets.xcassets in Resources */,
+				17D452552E12A2A7006D1FA1 /* prova_1.json in Resources */,
 				17D452162E129EB9006D1FA1 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -257,8 +290,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				17D452142E129EB7006D1FA1 /* ContentView.swift in Sources */,
+				17D452472E129EF3006D1FA1 /* ContentView.swift in Sources */,
+				17D4524C2E129EF3006D1FA1 /* GabaritoResumoSimplesView.swift in Sources */,
+				17D452492E129EF3006D1FA1 /* GabaritoView.swift in Sources */,
 				17D452122E129EB7006D1FA1 /* simunadoApp.swift in Sources */,
+				17D4524A2E129EF3006D1FA1 /* GabaritoResumoView.swift in Sources */,
+				17D4524D2E129EF3006D1FA1 /* QuestaoRow.swift in Sources */,
+				17D452502E129EF3006D1FA1 /* RespostasManager.swift in Sources */,
+				17D4524B2E129EF3006D1FA1 /* JustifiedText.swift in Sources */,
+				17D452512E129EF3006D1FA1 /* JSONLoader.swift in Sources */,
+				17D4524E2E129EF3006D1FA1 /* QuestoesView.swift in Sources */,
+				17D452482E129EF3006D1FA1 /* Prova.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -422,8 +464,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"simunado/Preview Content\"";
+				DEVELOPMENT_TEAM = LY632H23VL;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = SIMUNADO;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -450,8 +494,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"simunado/Preview Content\"";
+				DEVELOPMENT_TEAM = LY632H23VL;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = SIMUNADO;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

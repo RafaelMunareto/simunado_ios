@@ -17,9 +17,9 @@ struct QuestoesView: View {
                     ForEach(Array(texto.linhas.enumerated()), id: \.offset) { i, linha in
                         Text("\(i + 1). \(linha)")
                             .font(.body)
-                            .multilineTextAlignment(.leading)
-                            .font(.subheadline)
                             .fixedSize(horizontal: false, vertical: true)
+                            .multilineTextAlignment(.leading)
+                            .frame(maxWidth: .infinity, alignment: .leading)
                     }
                 }
                 .padding(.horizontal)
@@ -45,6 +45,7 @@ struct QuestoesView: View {
                             respostasManager: respostasManager,
                             corrigido: corrigido
                         )
+                        
                     }
                 }.padding(.top)
                
