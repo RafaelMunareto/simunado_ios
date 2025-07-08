@@ -11,9 +11,9 @@ struct ContentView: View {
     @State private var resultadoResumoEspecifico: ResultadoResumo?
     @State private var liquidoBasico: Int?
     @State private var liquidoEspecifico: Int?
-    
+
     @StateObject private var respostasManager = RespostasManager()
-    
+
     var body: some View {
         ScrollViewReader { scrollProxy in
             VStack(spacing: 0) {
@@ -23,17 +23,7 @@ struct ContentView: View {
                         .fontWeight(.bold)
                         .foregroundColor(Color.blue)
                         .padding(.top, 12)
-                    
-                    // Se quiser ativar seleção da prova, descomente:
-                    /*
-                    Picker("Prova", selection: $provaSelecionada) {
-                        ForEach(provasDisponiveis, id: \.self) { p in
-                            Text(p.capitalized)
-                        }
-                    }
-                    .pickerStyle(MenuPickerStyle())
-                    */
-                    
+
                     Picker("Parte", selection: $parteAtual) {
                         Text("BÁSICO").tag("basicos")
                         Text("ESPECÍFICO").tag("especificos")
@@ -43,16 +33,16 @@ struct ContentView: View {
                 }
                 .background(Color(.systemBackground))
                 .zIndex(1)
-                
+
                 Divider()
-                
+
                 ZStack(alignment: .bottomLeading) {
                     ScrollView {
-                        VStack {
+                        VStack(alignment: .leading) {
                             Color.clear
                                 .frame(height: 0)
                                 .id("topo")
-                            
+
                             if let prova = prova?[parteAtual] {
                                 QuestoesView(
                                     parte: prova,
@@ -60,8 +50,9 @@ struct ContentView: View {
                                     corrigido: parteAtual == "basicos" ? corrigidoBasico : corrigidoEspecifico
                                 )
                             }
-                            
+                           
                             HStack {
+                                Spacer()
                                 Button("Gerar Gabarito") {
                                     if parteAtual == "basicos" {
                                         corrigir(parte: "basicos")
@@ -69,9 +60,15 @@ struct ContentView: View {
                                         corrigir(parte: "basicos")
                                         corrigir(parte: "especificos")
                                     }
+                                    // Aguarda a renderização antes de rolar
+                                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                                        withAnimation {
+                                            scrollProxy.scrollTo("final", anchor: .bottom)
+                                        }
+                                    }
                                 }
                                 .buttonStyle(.borderedProminent)
-                                
+
                                 Button("Limpar Respostas") {
                                     respostasManager.limpar()
                                     corrigidoBasico = false
@@ -84,21 +81,25 @@ struct ContentView: View {
                                 .buttonStyle(.bordered)
                                 .background(Color(.systemGray3))
                                 .foregroundColor(.primary)
+                                Spacer()
                             }
+                           
                             .padding()
-                            
-                            if parteAtual == "basicos" {
-                                if let resumo = resultadoResumoBasico {
-                                    GabaritoResumoSimplesView(
-                                        resumo: resumo,
-                                        liquidoBasico: liquidoBasico,
-                                        liquidoEspecifico: liquidoEspecifico,
-                                        categoria: "Básico"
-                                    )
-                                    .padding()
-                                }
-                            } else {
-                                VStack(spacing: 20) {
+                           
+                            VStack(spacing: 20) {
+                                if parteAtual == "basicos" {
+                                    if let resumo = resultadoResumoBasico {
+                                        GabaritoResumoSimplesView(
+                                            resumo: resumo,
+                                            liquidoBasico: liquidoBasico,
+                                            liquidoEspecifico: liquidoEspecifico,
+                                            categoria: "Básico"
+                                        )
+                                    } else {
+                                        // Sempre manter um placeholder invisível
+                                        EmptyView()
+                                    }
+                                } else {
                                     if let resumoBasico = resultadoResumoBasico {
                                         GabaritoResumoSimplesView(
                                             resumo: resumoBasico,
@@ -116,11 +117,12 @@ struct ContentView: View {
                                         )
                                     }
                                 }
-                                .padding()
                             }
-                        }
+                            .padding()
+                            .id("final") // <-- SEMPRE PRESENTE
+                        } 
                     }
-                    
+
                     Button(action: {
                         withAnimation {
                             scrollProxy.scrollTo("topo", anchor: .top)
@@ -143,26 +145,26 @@ struct ContentView: View {
             }
         }
     }
-    
+
     func carregar() {
         if let provaCarregada = carregarProva(nomeArquivo: provaSelecionada) {
             prova = provaCarregada
         }
     }
-    
+
     func corrigir(parte: String) {
         guard let prova = prova?[parte] else { return }
-        
+
         var acertos = 0
         var erros = 0
         var vazios = 0
         var total = 0
-        
+
         for tema in prova.temas {
             for questao in tema.questoes {
                 let resposta = respostasManager.respostas[questao.id] ?? ""
                 let correta = questao.gabarito.uppercased()
-                
+
                 if resposta.isEmpty {
                     vazios += 1
                 } else if resposta == correta {
@@ -174,7 +176,7 @@ struct ContentView: View {
                 }
             }
         }
-        
+
         let resumo = ResultadoResumo(
             acertos: acertos,
             erros: erros,
@@ -182,7 +184,7 @@ struct ContentView: View {
             total: total,
             temas: []
         )
-        
+
         if parte == "basicos" {
             liquidoBasico = total
             resultadoResumoBasico = resumo

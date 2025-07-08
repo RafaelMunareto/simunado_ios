@@ -13,23 +13,12 @@ struct QuestaoRow: View {
             HStack(alignment: .top) {
                 Text("\(questao.id).")
                     .fontWeight(.bold)
-                
-                VStack {
-                    Spacer()
-                    HStack {
-                        Spacer()
+                    
                         Text(questao.enunciado)
-                            .font(.subheadline)
-                            .fixedSize(horizontal: false, vertical: true)
-                            .multilineTextAlignment(.leading)
-                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .font(.body)
+                            
                             Spacer()
-                    }
-                    Spacer() 
-                }
-                
-             
-                
+            
                 Button(action: {
                     UIPasteboard.general.string = questao.enunciado
                     copied = true
@@ -44,7 +33,7 @@ struct QuestaoRow: View {
             
             // Botões B, C, E + Ver
             HStack {
-                ForEach(["B", "C", "E"], id: \.self) { letra in
+                ForEach(["C", "E"], id: \.self) { letra in
                     let selecionado = respostasManager.respostas[questao.id] == letra
                     Button(letra) {
                         if selecionado {
@@ -93,20 +82,20 @@ struct QuestaoRow: View {
             RoundedRectangle(cornerRadius: 8)
                 .stroke(borderColor(), lineWidth: 1)
         )
-        .onAppear {
-            // Aqui você inicializa a resposta
-            if respostasManager.respostas[questao.id] == nil {
-                respostasManager.respostas[questao.id] = "B"
-                respostasManager.salvar()
-            }
-        }
+//        .onAppear {
+//            // Aqui você inicializa a resposta
+//            if respostasManager.respostas[questao.id] == nil {
+//                respostasManager.respostas[questao.id] = "B"
+//                respostasManager.salvar()
+//            }
+//        }
     }
     
     // Cor de fundo do botão
     private func corFundo(_ letra: String, _ selecionado: Bool) -> Color {
         guard selecionado else { return Color(.systemGray5) }
         switch letra {
-        case "B": return Color.white
+        //case "B": return Color.white
         case "C": return Color.blue
         case "E": return Color.red
         default: return Color(.systemGray5)
